@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0a0b12">
+  <meta name="description" content="LosGoob — your web, your way.">
+  <title>LosGoob</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/index.css">
+  <script src="/scram/scramjet.all.js"></script>
+  <script src="/baremux/index.js"></script>
+  <script src="/register-sw.js" defer></script>
+  <script src="/search.js" defer></script>
+  <script src="/index.js" defer></script>
+</head>
+<body>
+  <div class="app-shell" id="app-shell">
+    <header class="topbar">
+      <a class="brand" href="/" id="brand-home" aria-label="LosGoob home">
+        <span class="brand-mark"><span></span><span></span><span></span></span>
+        <span class="brand-name">Los<span>Goob</span></span>
+        <span class="brand-version">BETA</span>
+      </a>
+      <div class="topbar-right">
+        <span class="status-dot"></span><span class="status-label" id="status-label">READY TO BROWSE</span>
+        <button class="icon-button" id="settings-button" title="Settings" aria-label="Settings">⚙</button>
+      </div>
+    </header>
+
+    <main class="home-view" id="home-view">
+      <div class="hero">
+        <div class="hero-orb orb-one"></div><div class="hero-orb orb-two"></div>
+        <div class="hero-badge"><span class="sparkle">✦</span> YOUR WEB, YOUR WAY</div>
+        <h1>Where do you<br><span>want to go?</span></h1>
+        <p class="hero-copy">A little less blocked. A lot more internet.</p>
+        <form class="address-form" id="sj-form" autocomplete="off">
+          <span class="search-symbol">⌕</span>
+          <input id="sj-address" type="text" placeholder="Search or enter a URL..." aria-label="Search or enter a URL" autofocus>
+          <button class="go-button" type="submit">Go <span>↗</span></button>
+        </form>
+        <div class="search-hint"><kbd>Enter</kbd> to browse <span class="hint-divider">·</span> Powered by Scramjet</div>
+        <p class="error-message" id="sj-error" role="status"></p>
+        <pre class="error-code" id="sj-error-code"></pre>
+      </div>
+
+      <section class="quick-section">
+        <div class="section-heading"><div><span class="eyebrow">QUICK LAUNCH</span><h2>Jump right in</h2></div><span class="section-note">A few places to start</span></div>
+        <div class="quick-grid">
+          <button class="quick-card" data-url="https://www.google.com"><span class="quick-icon google">G</span><span class="quick-title">Google</span><span class="quick-desc">Search anything</span><span class="card-arrow">↗</span></button>
+          <button class="quick-card" data-url="https://www.youtube.com"><span class="quick-icon youtube">▶</span><span class="quick-title">YouTube</span><span class="quick-desc">Videos & creators</span><span class="card-arrow">↗</span></button>
+          <button class="quick-card" data-url="https://www.reddit.com"><span class="quick-icon reddit">●</span><span class="quick-title">Reddit</span><span class="quick-desc">Find your community</span><span class="card-arrow">↗</span></button>
+          <button class="quick-card" data-url="https://www.wikipedia.org"><span class="quick-icon wiki">W</span><span class="quick-title">Wikipedia</span><span class="quick-desc">Go down a rabbit hole</span><span class="card-arrow">↗</span></button>
+        </div>
+      </section>
+
+      <section class="recent-section" id="recent-section" hidden>
+        <div class="section-heading"><div><span class="eyebrow">LOCAL ONLY</span><h2>Recently visited</h2></div><button class="text-button" id="clear-history">Clear history</button></div>
+        <div class="recent-list" id="recent-list"></div>
+      </section>
+
+      <footer class="home-footer"><span>✦ Made for curious minds.</span><span>LosGoob <span class="footer-dot">•</span> A personal browsing gateway</span></footer>
+    </main>
+
+    <section class="browser-view" id="browser-view" hidden>
+      <nav class="browser-toolbar" aria-label="Browser controls">
+        <button class="nav-button" id="back-button" title="Back" aria-label="Back">←</button>
+        <button class="nav-button" id="forward-button" title="Forward" aria-label="Forward">→</button>
+        <button class="nav-button" id="reload-button" title="Reload" aria-label="Reload">↻</button>
+        <button class="nav-button home-button" id="home-button" title="Home" aria-label="Home">⌂</button>
+        <form class="toolbar-address" id="toolbar-form">
+          <span class="lock-icon">◈</span>
+          <input id="toolbar-address" aria-label="Current URL" autocomplete="off" spellcheck="false">
+          <button type="submit" aria-label="Go to address">↵</button>
+        </form>
+        <button class="nav-button" id="new-tab-button" title="New home" aria-label="New home">＋</button>
+      </nav>
+      <div class="loading-line" id="loading-line"></div>
+      <div class="frame-container" id="frame-container"></div>
+    </section>
+  </div>
+
+  <dialog class="settings-dialog" id="settings-dialog">
+    <div class="dialog-head"><div><span class="eyebrow">PERSONALIZE</span><h2>Settings</h2></div><button class="icon-button" id="close-settings" aria-label="Close settings">✕</button></div>
+    <label class="setting-row"><span><strong>Search engine</strong><small>Used when you type a search instead of a URL</small></span><select id="search-engine"><option value="https://www.google.com/search?q=%s">Google</option><option value="https://www.bing.com/search?q=%s">Bing</option><option value="https://duckduckgo.com/?q=%s">DuckDuckGo</option></select></label>
+    <label class="setting-row"><span><strong>Reduce motion</strong><small>Turn off most interface animations</small></span><input type="checkbox" id="reduce-motion"></label>
+    <p class="settings-footnote">Your recent URLs and preferences stay in this browser's local storage. LosGoob does not include an account system.</p>
+  </dialog>
+</body>
+</html>
