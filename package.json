@@ -1,0 +1,22 @@
+{
+  "name": "losgoob",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "LosGoob — a midnight-themed browser proxy powered by Scramjet.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/index.js",
+    "check": "node --check src/index.js && node --check public/index.js && node --check public/search.js && node --check public/register-sw.js && node --check public/sw.js"
+  },
+  "dependencies": {
+    "@fastify/static": "^9.0.0",
+    "@mercuryworkshop/bare-mux": "^2.1.9",
+    "@mercuryworkshop/libcurl-transport": "^1.5.2",
+    "@mercuryworkshop/scramjet": "https://github.com/MercuryWorkshop/scramjet/releases/download/v1.1.0/mercuryworkshop-scramjet-1.1.0.tgz",
+    "@mercuryworkshop/wisp-js": "^0.4.1",
+    "fastify": "^5.7.4"
+  }
+}
