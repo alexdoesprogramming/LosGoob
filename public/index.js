@@ -179,6 +179,19 @@ document.getElementById("brand-home").addEventListener("click", event => {
 });
 document.getElementById("new-tab-button").addEventListener("click", goHome);
 document.getElementById("settings-button").addEventListener("click", () => settingsDialog.showModal());
+document.getElementById("open-blank-tab").addEventListener("click", () => {
+  const blankTab = window.open("about:blank", "_blank");
+  if (!blankTab) {
+    setError("The new tab was blocked. Allow pop-ups for LosGoob and try again.");
+    settingsDialog.close();
+    return;
+  }
+  const appUrl = new URL("/", window.location.origin).href;
+  blankTab.document.open();
+  blankTab.document.write(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>New Tab</title><style>html,body,iframe{width:100%;height:100%;margin:0;border:0;background:#0a0b12}iframe{display:block}</style></head><body><iframe title="LosGoob session" src="${appUrl}"></iframe></body></html>`);
+  blankTab.document.close();
+  settingsDialog.close();
+});
 document.getElementById("close-settings").addEventListener("click", () => settingsDialog.close());
 settingsDialog.addEventListener("click", event => {
   if (event.target === settingsDialog) settingsDialog.close();
