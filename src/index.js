@@ -9,7 +9,7 @@ import { libcurlPath } from "@mercuryworkshop/libcurl-transport";
 import { baremuxPath } from "@mercuryworkshop/bare-mux/node";
 
 const publicPath = fileURLToPath(new URL("../public/", import.meta.url));
-const host = process.env.HOST || "127.0.0.1";
+const host = process.env.HOST || (process.env.PORT ? "0.0.0.0" : "127.0.0.1");
 const portValue = Number.parseInt(process.env.PORT || "8080", 10);
 const port = Number.isInteger(portValue) && portValue > 0 && portValue < 65536 ? portValue : 8080;
 
